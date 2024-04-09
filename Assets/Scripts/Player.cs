@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField] float force = 100f;
     public Collider colPlataform;
+    public int pontuacao = 0;
 
     Ray ray;
     RaycastHit hit;
@@ -26,7 +28,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -53,7 +55,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        //pontuacao++;
 
     }
 
@@ -62,8 +64,13 @@ public class Player : MonoBehaviour
         if (rb.velocity.y == 0)
         {
             rb.AddForce(transform.up * force, ForceMode.Impulse);
-
+            pontuacao++;
         }
 
     }
+    public int GetPontuacao()
+    {
+        return pontuacao;
+    }
+   
 }
