@@ -107,6 +107,13 @@ public class Player : MonoBehaviour
         {
             rb.AddForce(transform.up * force, ForceMode.Impulse);
 
+            if (plataforma.scoreAdicionado == false)
+            {
+
+                GameController.instance.addScore(10);
+                plataforma.scoreAdicionado = true;
+            }
+
         }
         // mas se ele ta colidindo e nao ta parado, significa que a plataforma tem que continuar trigger
        /* else
