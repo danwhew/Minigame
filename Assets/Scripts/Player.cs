@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     Rigidbody rb;
     public float force = 100f;
     public Collider colPlataform;
-    
+
     public Plataforma plataforma;
 
     Ray ray;
@@ -19,15 +19,33 @@ public class Player : MonoBehaviour
     public float speed = 10f;
     public float tamanhoRay;
 
+    private Vector3 moveScreen;
+
+    void Start()
+    {
+        // utilizando a camera para calcular os limites da tela
+        moveScreen = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+    }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        Vector3 playerPosition = transform.position;
+        if (playerPosition.x < -moveScreen.x)
+        {
+            // aparece no direito da tela
+            transform.position = new Vector3(moveScreen.x, playerPosition.y, playerPosition.z);
+        }
+        else if (playerPosition.x > moveScreen.x)
+        {
+            // aparece no esquerdo d tela
+            transform.position = new Vector3(-moveScreen.x, playerPosition.y, playerPosition.z);
+        }
+
         //movimentacao pc
         horizontal = Input.GetAxis("Horizontal");
 
@@ -35,45 +53,45 @@ public class Player : MonoBehaviour
 
         //
 
-         ray = new Ray(transform.position, -transform.up * tamanhoRay);
+        ray = new Ray(transform.position, -transform.up * tamanhoRay);
 
-          Debug.DrawRay(transform.position, -transform.up * tamanhoRay, Color.red);
+        Debug.DrawRay(transform.position, -transform.up * tamanhoRay, Color.red);
 
-          // se ele acertar o raycast
-          if (Physics.Raycast(ray, out hit, tamanhoRay))
-          {
-              Debug.Log("Raycastando");
-              colPlataform = hit.collider.gameObject.GetComponent<Collider>();
-              plataforma = hit.collider.gameObject.GetComponent<Plataforma>();
-
-
-              if (colPlataform != null)
-              {
-                  //se ele tiver raycastado uma plataforma, ela deixa de ser trigger, entao ele nao atravessesa
-                  colPlataform.isTrigger = false;
-
-              }
-
-          }
-
-          //se ele nao tiver acertando o raycast
-          else
-          {
-
-              Debug.Log("Nao Raycastando");
-              if (colPlataform != null)
-              {
-                  //a ultima plataforma que ele passou vira trigger
-                  colPlataform.isTrigger = true;
-
-              }
+        // se ele acertar o raycast
+        if (Physics.Raycast(ray, out hit, tamanhoRay))
+        {
+            Debug.Log("Raycastando");
+            colPlataform = hit.collider.gameObject.GetComponent<Collider>();
+            plataforma = hit.collider.gameObject.GetComponent<Plataforma>();
 
 
-          }
+            if (colPlataform != null)
+            {
+                //se ele tiver raycastado uma plataforma, ela deixa de ser trigger, entao ele nao atravessesa
+                colPlataform.isTrigger = false;
+
+            }
+
+        }
+
+        //se ele nao tiver acertando o raycast
+        else
+        {
+
+            Debug.Log("Nao Raycastando");
+            if (colPlataform != null)
+            {
+                //a ultima plataforma que ele passou vira trigger
+                colPlataform.isTrigger = true;
+
+            }
 
 
-          
-     
+        }
+
+
+
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -85,11 +103,11 @@ public class Player : MonoBehaviour
         {
             rb.AddForce(transform.up * force, ForceMode.Impulse);
 
-            if(plataforma.scoreAdicionado == false)
+            if (plataforma.scoreAdicionado == false)
             {
 
-            GameController.instance.addScore(10);
-            plataforma.scoreAdicionado = true;
+                GameController.instance.addScore(10);
+                plataforma.scoreAdicionado = true;
             }
 
         }
