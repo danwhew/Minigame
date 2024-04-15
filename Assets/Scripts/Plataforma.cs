@@ -20,7 +20,11 @@ public class Plataforma : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //colisor.isTrigger = true;
+
+        
+          // colisor.isTrigger = true;
+
+        
     }
 
     private void OnTriggerExit(Collider other)

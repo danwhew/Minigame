@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     Rigidbody rb;
     public float force = 100f;
     public Collider colPlataform;
+    
     public Plataforma plataforma;
 
     Ray ray;
@@ -24,11 +25,6 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -39,42 +35,45 @@ public class Player : MonoBehaviour
 
         //
 
-        ray = new Ray(transform.position, -transform.up * tamanhoRay);
+         ray = new Ray(transform.position, -transform.up * tamanhoRay);
 
-        Debug.DrawRay(transform.position, -transform.up * tamanhoRay, Color.red);
+          Debug.DrawRay(transform.position, -transform.up * tamanhoRay, Color.red);
 
-        // se ele acertar o raycast
-        if (Physics.Raycast(ray, out hit, tamanhoRay))
-        {
-            Debug.Log("Raycastando");
-            colPlataform = hit.collider.gameObject.GetComponent<Collider>();
-            plataforma = hit.collider.gameObject.GetComponent<Plataforma>();
-
-
-            if (colPlataform != null)
-            {
-                //se ele tiver raycastado uma plataforma, ela deixa de ser trigger, entao ele nao atravessesa
-                colPlataform.isTrigger = false;
-
-            }
-
-        }
-
-        //se ele nao tiver acertando o raycast
-        else
-        {
-
-            Debug.Log("Nao Raycastando");
-            if (colPlataform != null)
-            {
-                //a ultima plataforma que ele passou vira trigger
-                colPlataform.isTrigger = true;
-
-            }
+          // se ele acertar o raycast
+          if (Physics.Raycast(ray, out hit, tamanhoRay))
+          {
+              Debug.Log("Raycastando");
+              colPlataform = hit.collider.gameObject.GetComponent<Collider>();
+              plataforma = hit.collider.gameObject.GetComponent<Plataforma>();
 
 
-        }
+              if (colPlataform != null)
+              {
+                  //se ele tiver raycastado uma plataforma, ela deixa de ser trigger, entao ele nao atravessesa
+                  colPlataform.isTrigger = false;
 
+              }
+
+          }
+
+          //se ele nao tiver acertando o raycast
+          else
+          {
+
+              Debug.Log("Nao Raycastando");
+              if (colPlataform != null)
+              {
+                  //a ultima plataforma que ele passou vira trigger
+                  colPlataform.isTrigger = true;
+
+              }
+
+
+          }
+
+
+          
+     
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -116,13 +115,13 @@ public class Player : MonoBehaviour
 
         }
         // mas se ele ta colidindo e nao ta parado, significa que a plataforma tem que continuar trigger
-       /* else
-        {
-            if (colPlataform != null)
-            {
-                colPlataform.isTrigger = true;
-            }
-        }*/
+        /* else
+         {
+             if (colPlataform != null)
+             {
+                 colPlataform.isTrigger = true;
+             }
+         }*/
 
     }
 
@@ -133,4 +132,7 @@ public class Player : MonoBehaviour
         rb.AddForce(Input.acceleration.x * speed, 0, 0, ForceMode.VelocityChange);
 
     }
+
+
 }
+
