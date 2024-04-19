@@ -15,12 +15,12 @@ public class GameController : MonoBehaviour
 
     public int score = 0;
 
-   /* public GameObject telaVitoria;
-    public GameObject telaDerrota;*/
+    public GameObject telaDerrota;
+    public GameObject telaVitoria;
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -32,19 +32,27 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-       // Time.timeScale = 1.0f;
+        Time.timeScale = 1.0f;
 
         //Quando tivermos essas telas
-       /* telaDerrota.SetActive(false);
-        telaVitoria.SetActive(false);*/
+        if (telaDerrota != null)
+        {
+            telaDerrota.SetActive(false);
+        }
 
-        
+        if (telaVitoria != null)
+        {
+            telaVitoria.SetActive(false);
+
+        }
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-      
+
     }
 
     //quem chama eh o player, e uma vez so
@@ -59,4 +67,17 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void loseGame()
+    {
+        if(telaDerrota != null)
+        {
+        telaDerrota.SetActive(true);
+        Time.timeScale = 0f;
+
+        }
+    }
+
+
+
 }

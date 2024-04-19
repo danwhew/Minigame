@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     Ray ray;
     RaycastHit hit;
+    public LayerMask layersToHit;
 
     public float horizontal;
 
@@ -20,6 +21,19 @@ public class Player : MonoBehaviour
     public float tamanhoRay;
 
     private Vector3 moveScreen;
+
+    public float radius = 0.75f;
+    public float offsetRaycast = 1;
+
+   /* private void OnBecameInvisible()
+    {
+        Debug.Log("sumi");
+        Time.timeScale = 0;
+        GameController.instance.loseGame();
+        Destroy(gameObject);
+
+
+    }*/
 
     void Start()
     {
@@ -46,6 +60,8 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(-moveScreen.x, playerPosition.y, playerPosition.z);
         }
 
+
+
         //movimentacao pc
         horizontal = Input.GetAxis("Horizontal");
 
@@ -53,7 +69,9 @@ public class Player : MonoBehaviour
 
         //
 
-        ray = new Ray(transform.position, -transform.up * tamanhoRay);
+
+
+       /* ray = new Ray(transform.position, -transform.up * tamanhoRay);
 
         Debug.DrawRay(transform.position, -transform.up * tamanhoRay, Color.red);
 
@@ -73,7 +91,6 @@ public class Player : MonoBehaviour
             }
 
         }
-
         //se ele nao tiver acertando o raycast
         else
         {
@@ -87,8 +104,38 @@ public class Player : MonoBehaviour
             }
 
 
-        }
+        }*/
 
+        
+       
+
+        if(Physics.SphereCast(transform.position + new Vector3(0, offsetRaycast,0), radius, -transform.up, out hit, 100f, layersToHit))
+        {
+            //Debug.Log("Raycastando");
+            colPlataform = hit.collider.gameObject.GetComponent<Collider>();
+            plataforma = hit.collider.gameObject.GetComponent<Plataforma>();
+
+
+            if (colPlataform != null)
+            {
+                //se ele tiver raycastado uma plataforma, ela deixa de ser trigger, entao ele nao atravessesa
+                colPlataform.isTrigger = false;
+
+            }
+        }
+        
+        else
+        {
+
+            
+            //Debug.Log("Nao Raycastando");
+            if (colPlataform != null)
+            {
+                //a ultima plataforma que ele passou vira trigger
+                colPlataform.isTrigger = true;
+            }
+        }
+        
 
 
 
@@ -151,6 +198,19 @@ public class Player : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("MataPlayer"))
+        {
+            Time.timeScale = 0;
+            GameController.instance.loseGame();
+            Destroy(gameObject);
+        }
+    }
 
+     private void OnDrawGizmos()
+     {
+         Gizmos.DrawWireSphere(transform.position + new Vector3(0, offsetRaycast, 0), radius);
+     }
 }
 

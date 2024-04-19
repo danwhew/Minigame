@@ -8,7 +8,12 @@ public class InstanciarCenario : MonoBehaviour
     public Transform anchor;
     public float offsetVertical = 1.0f; // Espaçamento vertical entre os tiles
 
-    private void OnEnable()
+    /*private void OnEnable()
+    {
+        InstanciarTiles();
+    }*/
+
+    private void Start()
     {
         InstanciarTiles();
     }
