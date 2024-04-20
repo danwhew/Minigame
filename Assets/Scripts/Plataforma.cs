@@ -27,8 +27,14 @@ public class Plataforma : MonoBehaviour
         
     }
 
-    private void OnTriggerExit(Collider other)
+   private void OnTriggerExit(Collider other)
     {
         colisor.isTrigger = true;
     }
+
+    /*private void OnCollisionExit(Collision collision)
+    {
+        colisor.isTrigger = true;
+    
+    }*/
 }

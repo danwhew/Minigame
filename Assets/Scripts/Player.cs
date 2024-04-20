@@ -67,48 +67,8 @@ public class Player : MonoBehaviour
 
         transform.Translate(horizontal * speed * Time.deltaTime, 0, 0);
 
-        //
 
-
-
-       /* ray = new Ray(transform.position, -transform.up * tamanhoRay);
-
-        Debug.DrawRay(transform.position, -transform.up * tamanhoRay, Color.red);
-
-        // se ele acertar o raycast
-        if (Physics.Raycast(ray, out hit, tamanhoRay))
-        {
-            Debug.Log("Raycastando");
-            colPlataform = hit.collider.gameObject.GetComponent<Collider>();
-            plataforma = hit.collider.gameObject.GetComponent<Plataforma>();
-
-
-            if (colPlataform != null)
-            {
-                //se ele tiver raycastado uma plataforma, ela deixa de ser trigger, entao ele nao atravessesa
-                colPlataform.isTrigger = false;
-
-            }
-
-        }
-        //se ele nao tiver acertando o raycast
-        else
-        {
-
-            Debug.Log("Nao Raycastando");
-            if (colPlataform != null)
-            {
-                //a ultima plataforma que ele passou vira trigger
-                colPlataform.isTrigger = true;
-
-            }
-
-
-        }*/
-
-        
-       
-
+        //detectar plataformas em baixo
         if(Physics.SphereCast(transform.position + new Vector3(0, offsetRaycast,0), radius, -transform.up, out hit, 100f, layersToHit))
         {
             //Debug.Log("Raycastando");
@@ -120,7 +80,7 @@ public class Player : MonoBehaviour
             {
                 //se ele tiver raycastado uma plataforma, ela deixa de ser trigger, entao ele nao atravessesa
                 colPlataform.isTrigger = false;
-
+                Debug.Log(" Raycastando");
             }
         }
         
@@ -128,12 +88,12 @@ public class Player : MonoBehaviour
         {
 
             
-            //Debug.Log("Nao Raycastando");
+            /*//Debug.Log("Nao Raycastando");
             if (colPlataform != null)
             {
                 //a ultima plataforma que ele passou vira trigger
                 colPlataform.isTrigger = true;
-            }
+            }*/
         }
         
 
@@ -150,12 +110,15 @@ public class Player : MonoBehaviour
         {
             rb.AddForce(transform.up * force, ForceMode.Impulse);
 
+           
             if (plataforma.scoreAdicionado == false)
             {
 
                 GameController.instance.addScore(10);
                 plataforma.scoreAdicionado = true;
             }
+
+            
 
         }
 
@@ -171,12 +134,15 @@ public class Player : MonoBehaviour
         {
             rb.AddForce(transform.up * force, ForceMode.Impulse);
 
+            
             if (plataforma.scoreAdicionado == false)
             {
 
                 GameController.instance.addScore(10);
                 plataforma.scoreAdicionado = true;
             }
+
+            
 
         }
         // mas se ele ta colidindo e nao ta parado, significa que a plataforma tem que continuar trigger
