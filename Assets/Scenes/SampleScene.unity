@@ -261,7 +261,8 @@ MonoBehaviour:
   - {fileID: 5359904755966714890, guid: 03978f30bd24f28408a588c9d736334e, type: 3}
   - {fileID: 5359904755966714890, guid: e992514295891954baa3aec4dc3a60cb, type: 3}
   - {fileID: 5359904755966714890, guid: ef4baeff8daa64344afe5bbaf698bcb4, type: 3}
-  anchor: {fileID: 1195110346}
+  cameraTransform: {fileID: 1188786247}
+  distanciaLimite: 10
   offsetVertical: 6
 --- !u!4 &496778908
 Transform:

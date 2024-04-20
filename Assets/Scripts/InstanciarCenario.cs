@@ -4,33 +4,51 @@ using UnityEngine;
 
 public class InstanciarCenario : MonoBehaviour
 {
-    public GameObject[] tiles;
-    public Transform anchor;
+    public GameObject[] tiles; // Prefabs dos tiles
+    public Transform cameraTransform; // Transform da câmera
+    public float distanciaLimite = 10.0f; // Distância a partir da qual instanciar novos tiles
     public float offsetVertical = 1.0f; // Espaçamento vertical entre os tiles
 
-    /*private void OnEnable()
-    {
-        InstanciarTiles();
-    }*/
+    private Vector3 ultimaPosicaoTileInstanciado; // Última posição em que um tile foi instanciado
 
     private void Start()
     {
-        InstanciarTiles();
+        InstanciarTilesIniciais();
     }
 
-    public void InstanciarTiles()
+    private void Update()
     {
-        // Posição inicial da âncora
-        Vector3 posicaoAncora = anchor.position;
+        // Verifica se é necessário instanciar novos tiles
+        if (Vector3.Distance(ultimaPosicaoTileInstanciado, cameraTransform.position) > distanciaLimite)
+        {
+            InstanciarNovosTiles();
+        }
+    }
 
-        // Instancia cada tile em uma posição verticalmente deslocada
+    // Instancia os tiles iniciais ao redor da câmera
+    private void InstanciarTilesIniciais()
+    {
+        Vector3 posicaoAncora = cameraTransform.position;
+
         foreach (GameObject tilePrefab in tiles)
         {
-            // Instancia o tile na posição da âncora
-            Instantiate(tilePrefab, posicaoAncora, Quaternion.identity, transform.parent);
+            GameObject novoTile = Instantiate(tilePrefab, posicaoAncora, Quaternion.identity);
+            posicaoAncora += Vector3.up * offsetVertical;
+            ultimaPosicaoTileInstanciado = posicaoAncora;
+        }
+    }
 
-            // Atualiza a posição vertical da âncora para o próximo tile
+    // Instancia novos tiles à frente da câmera
+    private void InstanciarNovosTiles()
+    {
+        Vector3 posicaoAncora = ultimaPosicaoTileInstanciado;
+
+        foreach (GameObject tilePrefab in tiles)
+        {
+            GameObject novoTile = Instantiate(tilePrefab, posicaoAncora, Quaternion.identity);
             posicaoAncora += Vector3.up * offsetVertical;
         }
+
+        ultimaPosicaoTileInstanciado = posicaoAncora;
     }
 }
