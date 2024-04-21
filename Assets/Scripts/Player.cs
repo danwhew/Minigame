@@ -25,15 +25,6 @@ public class Player : MonoBehaviour
     public float radius = 0.75f;
     public float offsetRaycast = 1;
 
-   /* private void OnBecameInvisible()
-    {
-        Debug.Log("sumi");
-        Time.timeScale = 0;
-        GameController.instance.loseGame();
-        Destroy(gameObject);
-
-
-    }*/
 
     void Start()
     {
@@ -48,23 +39,23 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Input.acceleration.x * speed * Time.deltaTime, 0, 0);
-   
-        //Debug.Log(Input.acceleration.x * speed);
 
         Vector3 playerPosition = transform.position;
-        if (playerPosition.x < -moveScreen.x)
+        if (playerPosition.x + transform.localScale.x/2 < -moveScreen.x)
         {
             // aparece no direito da tela
             transform.position = new Vector3(moveScreen.x, playerPosition.y, playerPosition.z);
         }
-        else if (playerPosition.x > moveScreen.x)
+        else if (playerPosition.x - transform.localScale.x / 2 > moveScreen.x)
         {
             // aparece no esquerdo d tela
             transform.position = new Vector3(-moveScreen.x, playerPosition.y, playerPosition.z);
         }
 
-
+        //movimentacao  celular
+        transform.Translate(Input.acceleration.x * speed * Time.deltaTime, 0, 0);
+   
+        //Debug.Log(Input.acceleration.x * speed);
 
         //movimentacao pc
         horizontal = Input.GetAxis("Horizontal");
@@ -87,20 +78,6 @@ public class Player : MonoBehaviour
                 //Debug.Log(" Raycastando");
             }
         }
-        
-        else
-        {
-
-            
-            /*//Debug.Log("Nao Raycastando");
-            if (colPlataform != null)
-            {
-                //a ultima plataforma que ele passou vira trigger
-                colPlataform.isTrigger = true;
-            }*/
-        }
-        
-
 
 
     }
@@ -121,8 +98,6 @@ public class Player : MonoBehaviour
                 GameController.instance.addScore(10);
                 plataforma.scoreAdicionado = true;
             }
-
-            
 
         }
 
@@ -149,14 +124,7 @@ public class Player : MonoBehaviour
             
 
         }
-        // mas se ele ta colidindo e nao ta parado, significa que a plataforma tem que continuar trigger
-        /* else
-         {
-             if (colPlataform != null)
-             {
-                 colPlataform.isTrigger = true;
-             }
-         }*/
+        
 
     }
 

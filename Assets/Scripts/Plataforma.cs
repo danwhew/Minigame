@@ -11,30 +11,11 @@ public class Plataforma : MonoBehaviour
     {
         colisor = GetComponent<Collider>();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        
-          // colisor.isTrigger = true;
-
-        
-    }
 
    private void OnTriggerExit(Collider other)
     {
         colisor.isTrigger = true;
     }
 
-    /*private void OnCollisionExit(Collision collision)
-    {
-        colisor.isTrigger = true;
     
-    }*/
 }

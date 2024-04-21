@@ -49,12 +49,6 @@ public class GameController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     //quem chama eh o player, e uma vez so
     public void addScore(int adicionar)
     {
