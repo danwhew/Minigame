@@ -6,39 +6,40 @@ using UnityEngine.Video;
 public class InstanciarCenario : MonoBehaviour
 {
     public GameObject[] tiles; // Prefabs dos tiles
-    public Player player;
-
-    public float timer;
-
     public Transform empty;
+    public GameObject pai;
+    public bool jaInstanciei;
 
-
-    private void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        InstanciarTiles();
-    }
-
-    private void Update()
-    {
-        
-
-        // Verifica se é necessário instanciar novos tiles
-       /* if ()
+        if (other.CompareTag("Player"))
         {
+            if(jaInstanciei == false)
+            {
             InstanciarTiles();
-            
-        }*/
+                jaInstanciei = true;
+
+            }
+            //Destroy(gameObject);
+        }
+
+        if (other.CompareTag("MataTile"))
+        {
+            Debug.Log("mateitile");
+            Destroy(pai);
+
+        }
     }
 
     // Instancia os tiles iniciais ao redor da câmera
     private void InstanciarTiles()
     {
 
-       
-        GameObject novoTile = Instantiate(tiles[Random.Range(0,5)], empty.position, Quaternion.identity);
+
+        GameObject novoTile = Instantiate(tiles[Random.Range(0, 5)], empty.position, Quaternion.identity);
 
     }
 
-    
-    
+
+
 }

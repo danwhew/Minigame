@@ -48,6 +48,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        transform.Translate(Input.acceleration.x * speed * Time.deltaTime, 0, 0);
+   
+        //Debug.Log(Input.acceleration.x * speed);
+
         Vector3 playerPosition = transform.position;
         if (playerPosition.x < -moveScreen.x)
         {
@@ -80,7 +84,7 @@ public class Player : MonoBehaviour
             {
                 //se ele tiver raycastado uma plataforma, ela deixa de ser trigger, entao ele nao atravessesa
                 colPlataform.isTrigger = false;
-                Debug.Log(" Raycastando");
+                //Debug.Log(" Raycastando");
             }
         }
         
@@ -156,13 +160,7 @@ public class Player : MonoBehaviour
 
     }
 
-
-    private void FixedUpdate()
-    {
-
-        rb.AddForce(Input.acceleration.x * speed, 0, 0, ForceMode.VelocityChange);
-
-    }
+    
 
     private void OnTriggerEnter(Collider other)
     {
