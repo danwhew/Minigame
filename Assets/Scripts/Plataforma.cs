@@ -12,7 +12,9 @@ public class Plataforma : MonoBehaviour
         colisor = GetComponent<Collider>();
     }
 
-   private void OnTriggerExit(Collider other)
+
+
+    private void OnTriggerExit(Collider other)
     {
         colisor.isTrigger = true;
     }

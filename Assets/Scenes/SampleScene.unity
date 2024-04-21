@@ -289,7 +289,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452609496}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -359,59 +359,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &496778906
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 496778908}
-  - component: {fileID: 496778907}
-  m_Layer: 0
-  m_Name: InstanciarTiles
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &496778907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496778906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2739b27b3cbf834eb14599a41630f5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tiles:
-  - {fileID: 5359904755966714890, guid: 52cf6cc7db0e17142be2b85fea8c682f, type: 3}
-  - {fileID: 5359904755966714890, guid: d24e2b11beaf79848881d9dfbef57207, type: 3}
-  - {fileID: 5359904755966714890, guid: 03978f30bd24f28408a588c9d736334e, type: 3}
-  - {fileID: 5359904755966714890, guid: e992514295891954baa3aec4dc3a60cb, type: 3}
-  - {fileID: 5359904755966714890, guid: ef4baeff8daa64344afe5bbaf698bcb4, type: 3}
-  empty: {fileID: 1663525171}
-  pai: {fileID: 0}
-  jaInstanciei: 0
---- !u!4 &496778908
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496778906}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.85, z: 0}
-  m_LocalScale: {x: 2.16, y: 0.1, z: 5}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &525510650
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,7 +489,7 @@ GameObject:
   - component: {fileID: 704706232}
   - component: {fileID: 704706230}
   - component: {fileID: 704706236}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -684,7 +631,7 @@ MonoBehaviour:
   speed: 29.9
   tamanhoRay: 0.6
   radius: 0.5
-  offsetRaycast: -0.28
+  offsetRaycast: -0.22
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,7 +1068,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188786246}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1298,37 +1245,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278884052}
   m_CullTransparentMesh: 1
---- !u!1 &1663525170
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1663525171}
-  m_Layer: 0
-  m_Name: Ancora
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1663525171
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1663525170}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1712615380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,6 +1640,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4258251352024247883, guid: 52cf6cc7db0e17142be2b85fea8c682f, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5208925300313663936, guid: 52cf6cc7db0e17142be2b85fea8c682f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1766,7 +1686,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5359904755966714890, guid: 52cf6cc7db0e17142be2b85fea8c682f, type: 3}
       propertyPath: m_Name
-      value: Prefab1
+      value: Tile1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359904755966714890, guid: 52cf6cc7db0e17142be2b85fea8c682f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1783,7 +1707,5 @@ SceneRoots:
   - {fileID: 178412907}
   - {fileID: 525510653}
   - {fileID: 704706235}
-  - {fileID: 496778908}
-  - {fileID: 1663525171}
   - {fileID: 1712615385}
   - {fileID: 7315592477425407099}

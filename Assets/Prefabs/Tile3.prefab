@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1303996340754459715}
   - component: {fileID: 5346579208939287404}
   m_Layer: 0
-  m_Name: Teste3 (1)
+  m_Name: Plataforma3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 5074005932353383939}
   - component: {fileID: 4011190205557170135}
   m_Layer: 0
-  m_Name: Teste1
+  m_Name: Plataforma1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 3050428725213955785}
   - component: {fileID: 5253185844999095236}
   m_Layer: 0
-  m_Name: Teste3
+  m_Name: Plataforma2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

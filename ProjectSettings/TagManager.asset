@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MataPlayer
   - MataTile
+  - Teste
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - NaoRaycasta
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - NaoRaycasta2
   - 
   - 
   - 

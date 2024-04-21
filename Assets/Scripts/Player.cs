@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     {
 
         Vector3 playerPosition = transform.position;
-        if (playerPosition.x + transform.localScale.x/2 < -moveScreen.x)
+        if (playerPosition.x + transform.localScale.x / 2 < -moveScreen.x)
         {
             // aparece no direito da tela
             transform.position = new Vector3(moveScreen.x, playerPosition.y, playerPosition.z);
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
 
         //movimentacao  celular
         transform.Translate(Input.acceleration.x * speed * Time.deltaTime, 0, 0);
-   
+
         //Debug.Log(Input.acceleration.x * speed);
 
         //movimentacao pc
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
 
 
         //detectar plataformas em baixo
-        if(Physics.SphereCast(transform.position + new Vector3(0, offsetRaycast,0), radius, -transform.up, out hit, 100f, layersToHit))
+        if (Physics.SphereCast(transform.position + new Vector3(0, offsetRaycast, 0), radius, -transform.up, out hit, 100f, layersToHit))
         {
             //Debug.Log("Raycastando");
             colPlataform = hit.collider.gameObject.GetComponent<Collider>();
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
         {
             rb.AddForce(transform.up * force, ForceMode.Impulse);
 
-           
+
             if (plataforma.scoreAdicionado == false)
             {
 
@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
         {
             rb.AddForce(transform.up * force, ForceMode.Impulse);
 
-            
+
             if (plataforma.scoreAdicionado == false)
             {
 
@@ -121,15 +121,15 @@ public class Player : MonoBehaviour
                 plataforma.scoreAdicionado = true;
             }
 
-            
+
 
         }
-        
+
 
     }
 
-    
 
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("MataPlayer"))
@@ -140,9 +140,9 @@ public class Player : MonoBehaviour
         }
     }
 
-     private void OnDrawGizmos()
-     {
-         Gizmos.DrawWireSphere(transform.position + new Vector3(0, offsetRaycast, 0), radius);
-     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, offsetRaycast, 0), radius);
+    }
 }
 
